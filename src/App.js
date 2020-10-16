@@ -1,26 +1,48 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { Component } from 'react';
+
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+//Header, footer, friend list, profile, posts
+
+class App extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      user: {
+        username: "Chewy",
+        password: "HansPal1",
+        profileImg: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcShmnxkgxMaKHlolPPw0BlJw4FfKr4g6QGS_w&usqp=CAU",
+        posts: [],
+        friends: []
+      },
+      loggedIn: false,
+      error: ""
+    }
+  }
+
+  logIn(e, userData) {
+    e.preventDefault();
+    const user = this.state.user;
+    if(userData.username === user.username && userData.password === user.password) {
+      this.setState({
+        loggedIn: true
+      })
+    } else {
+      this.setState({ error: "Incorrect credentials"})
+    }
+  }
+  render() {
+    return (
+      <div className="App">
+        <header>
+          <h1>Salyd</h1>
+          <button>Log In / Register</button>
+        </header>
+      </div>
+    );
+  }
+  
 }
 
 export default App;
